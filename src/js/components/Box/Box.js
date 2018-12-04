@@ -8,7 +8,7 @@ import { ThemeContext } from '../../contexts';
 import { backgroundIsDark } from '../../utils';
 import { defaultProps } from '../../default-props';
 
-import { withForwardRef } from '../hocs';
+import { withForwardRef, withDocs } from '../hocs';
 
 import { StyledBox, StyledBoxGap } from './StyledBox';
 
@@ -138,13 +138,10 @@ class Box extends Component {
 
 Object.setPrototypeOf(Box.defaultProps, defaultProps);
 
-let BoxDoc;
-if (process.env.NODE_ENV !== 'production') {
-  BoxDoc = require('./doc').doc(Box); // eslint-disable-line global-require
-}
 const BoxWrapper = compose(
   withTheme,
   withForwardRef,
-)(BoxDoc || Box);
+  withDocs('./Box/doc'),
+)(Box);
 
 export { BoxWrapper as Box };
